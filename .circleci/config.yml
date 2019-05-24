@@ -33,7 +33,7 @@ jobs:
 
     working_directory: ~/repo
     steps:
-      - docker image build -t service1 .
+      - docker build -t service1 .
 
 
 workflows:
