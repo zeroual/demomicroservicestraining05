@@ -27,6 +27,11 @@ jobs:
       - run:
           name: Package APP
           command: mvn package -DskipTests=true
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - service1
   deploy:
     docker:
       - image: circleci/openjdk:8-jdk
@@ -34,7 +39,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - setup_remote_docker
-      - run: docker build -t service1 .
+      - attach_workspace:
+          at: .
+      - run: docker build -t service1:${CIRCLE_WORKFLOW_ID} service1/
 
 
 workflows:
