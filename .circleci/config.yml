@@ -28,8 +28,6 @@ jobs:
           name: Package APP
           command: mvn package -DskipTests=true
 
-      - run: ls -al
-      - run: ls target -al
       - persist_to_workspace:
           root: .
           paths:
