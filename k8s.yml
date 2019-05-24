@@ -19,6 +19,27 @@ spec:
           ports:
             - containerPort: 8001
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service2
+  template:
+    metadata:
+      labels:
+        app: service2
+    spec:
+      containers:
+        - name: service1
+          imagePullPolicy: Always
+          image: ${GOOGLE_REGISTRY_URL}/service2:${CIRCLE_WORKFLOW_ID}
+          ports:
+            - containerPort: 8002
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,3 +54,18 @@ spec:
     app: service1
   type: LoadBalancer
   loadBalancerIP: ""
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service2-service
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8002
+  selector:
+    app: service2
