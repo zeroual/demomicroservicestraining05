@@ -43,7 +43,7 @@ jobs:
       - GOOGLE_PROJECT_ID: "probable-force-241609"
       - GOOGLE_COMPUTE_ZONE: "europe-west3-a"
       - GOOGLE_CLUSTER_NAME: "standard-cluster-1"
-      - GOOGLE_REGISTRY_URL: "eu.gcr.io/${GOOGLE_PROJECT_ID}"
+      - GOOGLE_REGISTRY_URL: "eu.gcr.io/probable-force-241609"
 
 
 
