@@ -36,7 +36,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: google/cloud-sdk
 
     environment:
       - PROJECT_NAME: "demo-microservices-training"
