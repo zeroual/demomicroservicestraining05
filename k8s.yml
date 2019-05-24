@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service1
+  template:
+    metadata:
+      labels:
+        app: service1
+    spec:
+      containers:
+        - name: service1
+          imagePullPolicy: Always
+          image: ${GOOGLE_REGISTRY_URL}/config-server:${CIRCLE_WORKFLOW_ID}
+          ports:
+            - containerPort: 8001
